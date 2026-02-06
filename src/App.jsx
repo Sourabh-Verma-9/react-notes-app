@@ -128,6 +128,7 @@ function App() {
 
   return (
     <div className="app">
+        <div className="top-center">
       <h1>Notepad App</h1>
       <div className="input-bar">
         <input
@@ -135,6 +136,7 @@ function App() {
           onChange={(e) => setText(e.target.value)}
         />
         <button onClick={addNote}>Add</button>
+        </div>
       </div>
 
       <div className="notes-container">

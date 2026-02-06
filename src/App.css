@@ -1,35 +1,73 @@
 body {
   margin: 0;
-  background: #f5f5f5;
+  background: #e6e8eb;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .app {
   height: 100vh;
-  padding: 20px;
-  position: relative;
-  background: #f5f5f5;
-  font-family: Arial, sans-serif;
 
-  max-width: 600px;
-  margin: 0 auto;
+  position: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.top-center {
+  position: absolute;
+  top: 50px;
+  left: 40%;
+
+
+
+  text-align: center;
+}
+
+.app h1 {
+  margin: 0;
+  margin-bottom: 20px;
+
+  text-align: center;
+
+  color: #333;
 }
 
 .input-bar {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .input-bar input {
   flex: 1;
-  padding: 8px;
-  font-size: 16px;
+  padding: 10px;
+
+  font-size: 15px;
+
+  border: 1px solid #ddd;
+  border-radius: 6px;
+
+  outline: none;
 }
 
-.input-bar button {
-  padding: 8px 16px;
-  cursor: pointer;
+.input-bar input:focus {
+  border-color: #4a90e2;
 }
+
+..input-bar button {
+   padding: 10px 16px;
+
+   border: none;
+   border-radius: 6px;
+
+   background: #4a90e2;
+   color: white;
+
+   font-weight: 500;
+
+   cursor: pointer;
+
+   transition: background 0.2s;
+ }
 
 .notes-container {
   position: relative;
@@ -37,14 +75,30 @@ body {
 
 .note {
   position: absolute;
+
   width: 160px;
   min-height: 80px;
-  padding: 10px;
 
-  background: #fff9c4;
-  border: 1px solid #e0d98c;
-  border-radius: 4px;
+  padding: 12px;
+
+  background: #fff9a8;
+
+  border-radius: 6px;
+
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.15);
 
   cursor: grab;
+
   user-select: none;
+
+  color: #222;          /* ← ADD THIS LINE */
+  font-weight: 500;     /* ← optional, improves readability */
+}
+
+.note:hover {
+  box-shadow: 4px 8px 18px rgba(0,0,0,0.25);
+}
+
+.note:active {
+  cursor: grabbing;
 }
