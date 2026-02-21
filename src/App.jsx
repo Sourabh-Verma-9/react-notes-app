@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 function App() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [highestZ, setHighestZ] = useState(1);
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem("notes");
     return saved ? JSON.parse(saved) : [];
@@ -22,7 +23,8 @@ function App() {
         x: 50 + prevNotes.length * 20,
         y: 50 + prevNotes.length * 20,
         originalX: 50 + prevNotes.length * 20,
-        originalY: 50 + prevNotes.length * 20
+        originalY: 50 + prevNotes.length * 20,
+        zIndex: 1
       }
     ]);
 
@@ -118,17 +120,24 @@ function App() {
       y: e.clientY - appRect.top - note.y
     });
 
-    setNotes(prevNotes =>
-      prevNotes.map(note =>
-        note.id === id
-          ? {
-              ...note,
-              originalX: note.x,
-              originalY: note.y
-            }
-          : note
-      )
-    );
+    setHighestZ(prev => {
+      const newZ = prev + 1;
+
+      setNotes(prevNotes =>
+        prevNotes.map(note =>
+          note.id === id
+            ? {
+                ...note,
+                originalX: note.x,
+                originalY: note.y,
+                zIndex: newZ
+              }
+            : note
+        )
+      );
+
+      return newZ;
+    });
 
     setDraggingId(id);
   };
@@ -153,7 +162,8 @@ function App() {
          className="note"
            style={{
              left: note.x,
-             top: note.y
+             top: note.y,
+             zIndex: note.zIndex
            }}
          onMouseDown={(e) => startDrag(e, note.id)}
        >
