@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 function App() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [highestZ, setHighestZ] = useState(1);
+  const [, setHighestZ] = useState(1);
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem("notes");
     return saved ? JSON.parse(saved) : [];
