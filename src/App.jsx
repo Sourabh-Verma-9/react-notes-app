@@ -4,7 +4,10 @@ import { useEffect } from "react";
 
 function App() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(() => {
+    const saved = localStorage.getItem("notes");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [text, setText] = useState("");
   const [draggingId, setDraggingId] = useState(null);
 
@@ -45,6 +48,10 @@ function App() {
         isOverlapping(movingNote, note)
     );
   };
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
